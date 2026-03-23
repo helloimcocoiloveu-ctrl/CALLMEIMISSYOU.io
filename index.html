@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>我的音檔網站</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #f5f5f5;
+            padding: 30px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🎧DJCO </h1>
+
+<div class="card">
+    <h2 contenteditable="true">音檔標題（點我可以改）</h2>
+    
+    <audio id="audio1" src="audio1.mp3"></audio>
+    
+    <button onclick="document.getElementById('audio1').play()">
+        ▶ 播放
+    </button>
+</div>
+
+<div class="card">
+    <h2 contenteditable="true">第二個音檔</h2>
+    
+    <audio id="audio2" src="audio2.mp3"></audio>
+    
+    <button onclick="document.getElementById('audio2').play()">
+        ▶ 播放
+    </button>
+</div>
+
+</body>
+</html>
+<div class="card">
+    <h2 contenteditable="true">新音檔</h2>
+    <audio id="audio3" src="audio3.mp3"></audio>
+    <button onclick="document.getElementById('audio3').play()">▶ 播放</button>
+</div>
