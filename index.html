@@ -55,8 +55,8 @@ h1 {
     <audio id="audio" controls style="width:100%"></audio>
 
     <div id="playlist">
-        <div class="song" onclick="playSong('HIHI.m4a', '豆聽')">豆聽</div>
-        <div class="song" onclick="playSong('HIHI.m4a', '第二首歌')">第二首歌</div>
+        <div class="song" onclick="playSong('HIHI.m4a', '豆')">豆</div>
+        <div class="song" onclick="playSong('HIHI.m4a', '早安豆')">早安豆</div>
     </div>
 
 </div>
@@ -67,7 +67,7 @@ function playSong(file, name) {
     audio.src = file;
     audio.play();
 
-    document.getElementById("nowPlaying").innerText = "不定期更新豆" + name;
+    document.getElementById("nowPlaying").innerText = "播放:" + name;
 
     let songs = document.querySelectorAll(".song");
     songs.forEach(s => s.classList.remove("active"));
