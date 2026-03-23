@@ -1,62 +1,78 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <title>我的音檔網站</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background: #f5f5f5;
-            padding: 30px;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        h2 {
-            margin-bottom: 10px;
-        }
-        button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 10px;
-            background: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>DJ小可</title>
+
+<style>
+body {
+    font-family: sans-serif;
+    background: linear-gradient(135deg, #fce4ec, #e3f2fd);
+    padding: 30px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.player {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.song {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.song:hover {
+    background: #f0f0f0;
+}
+
+.active {
+    background: #ffd1dc;
+}
+
+</style>
 </head>
+
 <body>
 
-<h1>🎧DJCO </h1>
+<h1>🎧 給你的歌</h1>
 
-<div class="card">
-    <h2 contenteditable="true">音檔標題（點我可以改）</h2>
-    
-    <audio id="audio1" src="audio1.mp3"></audio>
-    
-    <button onclick="document.getElementById('audio1').play()">
-        ▶ 播放
-    </button>
+<div class="player">
+
+    <h2 id="nowPlaying">點一首歌開始</h2>
+
+    <audio id="audio" controls style="width:100%"></audio>
+
+    <div id="playlist">
+        <div class="song" onclick="playSong('HIHI.m4a', '第一首歌')">第一首歌</div>
+        <div class="song" onclick="playSong('song2.mp3', '第二首歌')">第二首歌</div>
+    </div>
+
 </div>
 
-<div class="card">
-    <h2 contenteditable="true">第二個音檔</h2>
-    
-    <audio id="audio2" src="audio2.mp3"></audio>
-    
-    <button onclick="document.getElementById('audio2').play()">
-        ▶ 播放
-    </button>
-</div>
+<script>
+function playSong(file, name) {
+    const audio = document.getElementById("audio");
+    audio.src = file;
+    audio.play();
+
+    document.getElementById("nowPlaying").innerText = "正在播放：" + name;
+
+    let songs = document.querySelectorAll(".song");
+    songs.forEach(s => s.classList.remove("active"));
+    event.target.classList.add("active");
+}
+</script>
 
 </body>
 </html>
-<div class="card">
-    <h2 contenteditable="true">新音檔</h2>
-    <audio id="audio3" src="audio3.mp3"></audio>
-    <button onclick="document.getElementById('audio3').play()">▶ 播放</button>
-</div>
