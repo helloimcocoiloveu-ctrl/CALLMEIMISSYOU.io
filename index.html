@@ -91,14 +91,8 @@ audio {
 
 </div>
 
-<script
-    function togglePlay() {
-    if (audio.paused) {
-        audio.play();
-    } else {
-        audio.pause();
-    }
-}>
+<script>
+    
 
 const songs = [
     {file: "HIHI.m4a", name: "第一首歌", cover: "IMG_0037.JPG"},
@@ -132,7 +126,13 @@ function playSong(index) {
     document.querySelectorAll(".song").forEach(s => s.classList.remove("active"));
     playlistDiv.children[index].classList.add("active");
 }
-
+function togglePlay() {
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+}
 </script>
 
 </body>
