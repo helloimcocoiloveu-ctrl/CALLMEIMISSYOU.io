@@ -83,15 +83,22 @@ audio {
     <h1>聽小可說</h1>
     <div id="nowPlaying">開始聆聽ü</div>
 
-    <img id="cover" class="cover" src="IMG_0468.jpg">
+   <img id="cover" class="cover" src="cover.jpg" onclick="togglePlay()">
 
-    <audio id="audio" controls></audio>
+    <audio id="audio"></audio>
 
     <div id="playlist"></div>
 
 </div>
 
-<script>
+<script
+    function togglePlay() {
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+}>
 
 const songs = [
     {file: "HIHI.m4a", name: "第一首歌", cover: "IMG_0037.JPG"},
