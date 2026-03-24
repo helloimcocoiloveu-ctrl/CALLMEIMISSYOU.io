@@ -126,15 +126,6 @@ function playSong(index) {
     playlistDiv.children[index].classList.add("active");
 }
 
-/* 自動播放下一首 */
-audio.addEventListener("ended", () => {
-    currentIndex++;
-    if (currentIndex >= songs.length) {
-        currentIndex = 0; // 播完回第一首
-    }
-    playSong(currentIndex);
-});
-
 </script>
 
 </body>
