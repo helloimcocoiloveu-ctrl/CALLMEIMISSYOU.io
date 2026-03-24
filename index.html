@@ -1,44 +1,82 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
-<title>DJ小可</title>
+
+<!-- 手機版關鍵 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>給你的歌</title>
+
+<!-- 字體 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
 
 <style>
+
 body {
-    font-family: 'Noto Sans TC', sans-serif;
-    background: linear-gradient(135deg, #fce4ec, #e3f2fd);
-    padding: 30px;
+    margin: 0;
+    font-family: 'Noto Serif TC', serif;
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 玻璃卡片 */
+.player {
+    width: 90%;
+    max-width: 420px;
+    padding: 25px;
+    border-radius: 25px;
+
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     text-align: center;
 }
 
+/* 標題 */
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    font-size: 24px;
 }
 
-.player {
-    background: white;
-    padding: 20px;
-    border-radius: 20px;
-    max-width: 400px;
-    margin: auto;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+#nowPlaying {
+    font-size: 16px;
+    margin-bottom: 15px;
 }
 
+/* 封面圖 */
+.cover {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+/* 歌單 */
 .song {
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 10px;
+    padding: 12px;
+    margin: 6px 0;
+    border-radius: 12px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .song:hover {
-    background: #f0f0f0;
+    background: rgba(255,255,255,0.4);
 }
 
 .active {
-    background: #ffd1dc;
+    background: rgba(255,255,255,0.6);
+    font-weight: bold;
+}
+
+audio {
+    width: 100%;
+    margin-bottom: 15px;
 }
 
 </style>
@@ -46,29 +84,39 @@ h1 {
 
 <body>
 
-<h1>聽小可說</h1>
-
 <div class="player">
 
-    <h2 id="nowPlaying">晚上十點的DJ小可</h2>
+    <h1>🎧 給你的歌</h1>
+    <div id="nowPlaying">點一首歌開始</div>
 
-    <audio id="audio" controls style="width:100%"></audio>
+    <!-- 封面圖（你可以換） -->
+    <img id="cover" class="cover" src="cover.jpg">
+
+    <audio id="audio" controls></audio>
 
     <div id="playlist">
-        <div class="song" onclick="playSong('HIHI.m4a', '豆')">豆</div>
-        <div class="song" onclick="playSong('HIHI.m4a', '早安')">早安</div>
-        <div class="song" onclick="playSong('HIHI.m4a', '早安')">早安</div>
+        <div class="song" onclick="playSong('song1.mp3', '第一首歌', 'cover.jpg')">
+            第一首歌
+        </div>
+
+        <div class="song" onclick="playSong('song2.mp3', '第二首歌', 'cover2.jpg')">
+            第二首歌
+        </div>
     </div>
 
 </div>
 
 <script>
-function playSong(file, name) {
+function playSong(file, name, cover) {
     const audio = document.getElementById("audio");
+    const coverImg = document.getElementById("cover");
+
     audio.src = file;
     audio.play();
 
-    document.getElementById("nowPlaying").innerText = "播放:" + name;
+    coverImg.src = cover;
+
+    document.getElementById("nowPlaying").innerText = "正在播放：" + name;
 
     let songs = document.querySelectorAll(".song");
     songs.forEach(s => s.classList.remove("active"));
