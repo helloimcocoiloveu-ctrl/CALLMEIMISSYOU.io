@@ -9,7 +9,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
 
 <style>
+.cover-container {
+    position: relative;
+    cursor: pointer;
+}
 
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    background: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 30px;
+    
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s;
+}
+
+.play-btn:hover {
+    background: rgba(0,0,0,0.7);
+}
 body {
     margin: 0;
     font-family: 'Noto Serif TC', serif;
@@ -83,8 +111,10 @@ audio {
     <h1>聽小可說</h1>
     <div id="nowPlaying">開始聆聽ü</div>
 
-   <img id="cover" class="cover" src="cover.jpg" onclick="togglePlay()">
-
+ <div class="cover-container" onclick="togglePlay()">
+    <img id="cover" class="cover" src="cover.jpg">
+    <div id="playBtn" class="play-btn">▶</div>
+</div>
     <audio id="audio"></audio>
 
     <div id="playlist"></div>
@@ -127,12 +157,23 @@ function playSong(index) {
     playlistDiv.children[index].classList.add("active");
 }
 function togglePlay() {
+    const btn = document.getElementById("playBtn");
+
     if (audio.paused) {
         audio.play();
+        btn.innerText = "⏸";
     } else {
         audio.pause();
+        btn.innerText = "▶";
     }
 }
+   audio.addEventListener("play", () => {
+    document.getElementById("playBtn").innerText = "⏸";
+});
+
+audio.addEventListener("pause", () => {
+    document.getElementById("playBtn").innerText = "▶";
+}); 
 </script>
 
 </body>
