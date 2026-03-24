@@ -6,7 +6,7 @@
 <!-- 手機版關鍵 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>給你的歌</title>
+<title>DJ小可❀</title>
 
 <!-- 字體 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
@@ -86,8 +86,8 @@ audio {
 
 <div class="player">
 
-    <h1>🎧 給你的歌</h1>
-    <div id="nowPlaying">點一首歌開始</div>
+    <h1>WU/ 聽小可說</h1>
+    <div id="nowPlaying">開始聆聽ü</div>
 
     <!-- 封面圖（你可以換） -->
     <img id="cover" class="cover" src="cover.jpg">
@@ -95,11 +95,11 @@ audio {
     <audio id="audio" controls></audio>
 
     <div id="playlist">
-        <div class="song" onclick="playSong('song1.mp3', '第一首歌', 'cover.jpg')">
+        <div class="song" onclick="playSong('HIHI.m4a', '第一首歌', 'cover.jpg')">
             第一首歌
         </div>
 
-        <div class="song" onclick="playSong('song2.mp3', '第二首歌', 'cover2.jpg')">
+        <div class="song" onclick="playSong('HIHI.m4a', '第二首歌', 'cover2.jpg')">
             第二首歌
         </div>
     </div>
@@ -116,7 +116,7 @@ function playSong(file, name, cover) {
 
     coverImg.src = cover;
 
-    document.getElementById("nowPlaying").innerText = "正在播放：" + name;
+    document.getElementById("nowPlaying").innerText = "播放：" + name;
 
     let songs = document.querySelectorAll(".song");
     songs.forEach(s => s.classList.remove("active"));
