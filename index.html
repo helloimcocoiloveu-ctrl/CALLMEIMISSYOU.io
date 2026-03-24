@@ -13,28 +13,39 @@
     position: relative;
     cursor: pointer;
 }
-
 .play-btn {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     
-    background: rgba(0,0,0,0.5);
-    color: white;
-    font-size: 30px;
+    background: rgba(0,0,0,0.7); /* 黑底 */
+    color: white; /* 白字 */
     
-    width: 60px;
-    height: 60px;
+    font-size: 26px;
+    
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     
     display: flex;
     align-items: center;
     justify-content: center;
 
+    border: none; /* ❗移除藍色邊框 */
+    outline: none; /* ❗移除點擊藍框 */
+
     transition: 0.2s;
 }
+    
+.play-btn:focus {
+    outline: none;
+}
 
+.play-btn:active {
+    background: rgba(0,0,0,0.9);
+}
+    
 .play-btn:hover {
     background: rgba(0,0,0,0.7);
 }
