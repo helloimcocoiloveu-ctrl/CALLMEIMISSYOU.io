@@ -2,13 +2,10 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-
-<!-- 手機版關鍵 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>DJ小可❀</title>
 
-<!-- 字體 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
 
 <style>
@@ -16,21 +13,21 @@
 body {
     margin: 0;
     font-family: 'Noto Serif TC', serif;
-    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    background: linear-gradient(135deg, #d3d3d3, #f0f0f0);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* 玻璃卡片 */
+/* 卡片 */
 .player {
     width: 90%;
     max-width: 420px;
     padding: 25px;
     border-radius: 25px;
 
-    background: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.4);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
 
@@ -38,18 +35,15 @@ body {
     text-align: center;
 }
 
-/* 標題 */
 h1 {
     margin-bottom: 10px;
-    font-size: 24px;
 }
 
 #nowPlaying {
-    font-size: 16px;
     margin-bottom: 15px;
 }
 
-/* 封面圖 */
+/* 封面 */
 .cover {
     width: 100%;
     border-radius: 15px;
@@ -66,11 +60,11 @@ h1 {
 }
 
 .song:hover {
-    background: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.5);
 }
 
 .active {
-    background: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.7);
     font-weight: bold;
 }
 
@@ -89,39 +83,58 @@ audio {
     <h1>聽小可說</h1>
     <div id="nowPlaying">開始聆聽ü</div>
 
-    <!-- 封面圖（你可以換） -->
     <img id="cover" class="cover" src="cover.jpg">
 
     <audio id="audio" controls></audio>
 
-    <div id="playlist">
-        <div class="song" onclick="playSong('HIHI.m4a', '第一首歌', 'cover.jpg')">
-            第一首歌
-        </div>
-
-        <div class="song" onclick="playSong('HIHI.m4a', '第二首歌', 'cover2.jpg')">
-            第二首歌
-        </div>
-    </div>
+    <div id="playlist"></div>
 
 </div>
 
 <script>
-function playSong(file, name, cover) {
-    const audio = document.getElementById("audio");
-    const coverImg = document.getElementById("cover");
 
-    audio.src = file;
+const songs = [
+    {file: "HIHI.m4a", name: "第一首歌", cover: "cover.jpg"},
+    {file: "HIHI.m4a", name: "第二首歌", cover: "cover2.jpg"}
+];
+
+let currentIndex = 0;
+
+const audio = document.getElementById("audio");
+const playlistDiv = document.getElementById("playlist");
+
+/* 建立歌單 */
+songs.forEach((song, index) => {
+    const div = document.createElement("div");
+    div.className = "song";
+    div.innerText = song.name;
+    div.onclick = () => playSong(index);
+    playlistDiv.appendChild(div);
+});
+
+/* 播放 */
+function playSong(index) {
+    currentIndex = index;
+
+    audio.src = songs[index].file;
     audio.play();
 
-    coverImg.src = cover;
+    document.getElementById("nowPlaying").innerText = "播放：" + songs[index].name;
+    document.getElementById("cover").src = songs[index].cover;
 
-    document.getElementById("nowPlaying").innerText = "播放：" + name;
-
-    let songs = document.querySelectorAll(".song");
-    songs.forEach(s => s.classList.remove("active"));
-    event.target.classList.add("active");
+    document.querySelectorAll(".song").forEach(s => s.classList.remove("active"));
+    playlistDiv.children[index].classList.add("active");
 }
+
+/* 自動播放下一首 */
+audio.addEventListener("ended", () => {
+    currentIndex++;
+    if (currentIndex >= songs.length) {
+        currentIndex = 0; // 播完回第一首
+    }
+    playSong(currentIndex);
+});
+
 </script>
 
 </body>
